@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="canonical" href="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progressive Clicker</title>
+	
+	
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="design.css">
+
+  <!-- TODO add manifest here -->
+  
+</head>
+<body>
+	
+	<div class="navbar-fixed">
+		<nav class="nav-extended hoverable">
+			<div class="center-align">
+			<div class="row">
+				
+				<div class="col s7 m2 right-align">
+					(<span id="villageoisDispo">0</span>)&nbsp
+					<span id="villageois">0</span>/<span id="villageoisMax">0</span>
+				</div>
+				<div class="col s5 m1 valign-wrapper">
+					<i class="material-icons left">people</i><span class="hide-on-med-only">Villageois</span>
+				</div>
+				
+				<div class="col s12 m1">
+					
+				</div>
+				<div class="col s7 m1 right-align valign-wrapper">
+					<div id="nourriture">0</div>
+				</div>
+				<div class="col s5 m1 valign-wrapper">
+					<i class="material-icons left">free_breakfast</i><span class="hide-on-med-only">Nourriture</span>
+				</div>
+				<div class="col s7 m1 right-align valign-wrapper">
+					<div id="bois">0</div>
+				</div>
+				<div class="col s5 m1 valign-wrapper">
+					<i class="material-icons left">nature</i><span class="hide-on-med-only">Bois</span>
+				</div>
+				<div class="col s7 m1 right-align valign-wrapper">
+					<div id="or">0</div>
+				</div>
+				<div class="col s5 m1 valign-wrapper">
+					<i class="material-icons left">attach_money</i><span class="hide-on-med-only">Or</span>
+				</div>
+				<div class="col s7 m1 right-align valign-wrapper">
+					<div id="pierre">0</div>
+				</div>
+				<div class="col s5 m1 valign-wrapper">
+					<i class="material-icons left">terrain</i><span class="hide-on-med-only">Pierre</span>
+				</div>
+			</div>
+			</div>
+		</nav>
+	</div>
+	
+	<main class="page-main">
+		<div id="card-recolte" class="container">
+			<div class="card-panel hoverable">
+				<div id="tip_recolteManuelle" class="row center-align">
+					<div class="col s12">
+						<h6>Récoltez des ressources en cliquant</h6>
+					</div>
+				</div>
+				
+				<div class="row center-align">
+					<div class="col s3 m3">
+						<div class="">
+							<a id="nourriture_clic" class="btn-small light-green darken-1 waves-effect waves-light valign-wrapper">
+								<i class="material-icons">free_breakfast</i><span class='hide-on-med-and-down'>&nbsp;Nourriture</span>&nbsp;+<span id='nourriture_gain_clic'>1</span>
+							</a>
+						</div>
+					</div>
+					<div class="col s3 m3">
+						<div class="">
+							<a id="bois_clic" class="btn-small brown lighten-2 waves-effect waves-light">
+								<i class="material-icons">nature</i><span class='hide-on-med-and-down'>&nbsp;Bois</span>&nbsp;+<span id='bois_gain_clic'>1</span>
+							</a>
+						</div>
+					</div>
+					<div class="col s3 m3">
+						<div class="">
+							<a id="or_clic" class="btn-small yellow darken-1 waves-effect waves-light">
+								<i class="material-icons">attach_money</i><span class='hide-on-med-and-down'>&nbsp;Or</span>&nbsp;+<span id='or_gain_clic'>1</span>
+							</a>
+						</div>
+					</div>
+					<div class="col s3 m3">
+						<div class="">
+							<a id="pierre_clic" class="btn-small grey waves-effect waves-light">
+								<i class="material-icons">terrain</i><span class='hide-on-med-and-down'>&nbsp;Pierre</span>&nbsp;+<span id='pierre_gain_clic'>1</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			
+			
+			<div id="nourritureUpgradeCard" class="card horizontal">
+				<div class="card-image valign-wrapper light-green darken-1 white-text">
+					<i class="material-icons">free_breakfast</i>
+				</div>
+				<div class="card-stacked">
+					<div class="card-content">
+						<div class="row valign-wrapper">
+							<div class="col s12 m7">
+								<h6>Nourriture</h6>
+								Les clics pour récolter la nourriture rapportent plus !
+							</div>
+							<div class="col s12 m5">
+								<div class="clic_gains">
+									<a id="nourriture_clic_actual_gain" class="waves-effect waves-light btn-small disabled">
+										+1
+									</a><i class="material-icons">arrow_right_alt</i><a id="nourriture_clic_future_gain" class="waves-effect waves-light btn-small disabled">
+										+10
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-action">
+						<div class="row valign-wrapper">
+							<div class="col s6">
+								<div>Coût: <span id="nourriture_clic_upgradeCost">0</span></div>
+							</div>
+							<div class="col s6 right-align">
+								<a id="nourriture_clic_upgrade" class="waves-effect waves-light btn-small upgradeButton">
+									<i class="material-icons">free_breakfast</i>&nbsp;Améliorer
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="boisUpgradeCard" class="card horizontal">
+				<div class="card-image valign-wrapper brown lighten-2 white-text">
+					<i class="material-icons">nature</i>
+				</div>
+				<div class="card-stacked">
+					<div class="card-content">
+						<div class="row valign-wrapper">
+							<div class="col s12 m7">
+								<h6>Bois</h6>
+								Les clics pour récolter la bois rapportent plus !
+							</div>
+							<div class="col s12 m5">
+								<div class="clic_gains">
+									<a id="bois_clic_actual_gain" class="waves-effect waves-light btn-small disabled">
+										+ 1
+									</a><i class="material-icons">arrow_right_alt</i><a id="bois_clic_future_gain" class="waves-effect waves-light btn-small disabled">
+										+ 10
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-action">
+						<div class="row valign-wrapper">
+							<div class="col s6">
+								<div>Coût: <span id="bois_clic_upgradeCost">0</span></div>
+							</div>
+							<div class="col s6 right-align">
+								<a id="bois_clic_upgrade" class="waves-effect waves-light btn-small upgradeButton">
+									<i class="material-icons">free_breakfast</i>&nbsp;Améliorer
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="orUpgradeCard" class="card horizontal">
+				<div class="card-image valign-wrapper yellow darken-1 white-text">
+					<i class="material-icons">attach_money</i>
+				</div>
+				<div class="card-stacked">
+					<div class="card-content">
+						<div class="row valign-wrapper">
+							<div class="col s12 m7">
+								<h6>Or</h6>
+								Les clics pour récolter la or rapportent plus !
+							</div>
+							<div class="col s12 m5">
+								<div class="clic_gains">
+									<a id="or_clic_actual_gain" class="waves-effect waves-light btn-small disabled">
+										+ 1
+									</a><i class="material-icons">arrow_right_alt</i><a id="or_clic_future_gain" class="waves-effect waves-light btn-small disabled">
+										+ 10
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-action">
+						<div class="row valign-wrapper">
+							<div class="col s6">
+								<div>Coût: <span id="or_clic_upgradeCost">0</span></div>
+							</div>
+							<div class="col s6 right-align">
+								<a id="or_clic_upgrade" class="waves-effect waves-light btn-small upgradeButton">
+									<i class="material-icons">free_breakfast</i>&nbsp;Améliorer
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="pierreUpgradeCard" class="card horizontal">
+				<div class="card-image valign-wrapper grey white-text">
+					<i class="material-icons">terrain</i>
+				</div>
+				<div class="card-stacked">
+					<div class="card-content">
+						<div class="row valign-wrapper">
+							<div class="col s12 m7">
+								<h6>Pierre</h6>
+								Les clics pour récolter la pierre rapportent plus !
+							</div>
+							<div class="col s12 m5">
+								<div class="clic_gains">
+									<a id="pierre_clic_actual_gain" class="waves-effect waves-light btn-small disabled">
+										+ 1
+									</a><i class="material-icons">arrow_right_alt</i><a id="pierre_clic_future_gain" class="waves-effect waves-light btn-small disabled">
+										+ 10
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-action">
+						<div class="row valign-wrapper">
+							<div class="col s6">
+								<div>Coût: <span id="pierre_clic_upgradeCost">0</span></div>
+							</div>
+							<div class="col s6 right-align">
+								<a id="pierre_clic_upgrade" class="waves-effect waves-light btn-small upgradeButton">
+									<i class="material-icons">free_breakfast</i>&nbsp;Améliorer
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="hotel_de_ville_card" class="card hoverable">
+				<div class="card-content">
+					<div class="card-title">
+						<span class="valign-wrapper">
+							<i class="material-icons">home</i>
+							<span id="hotel_de_ville_name">Hôtel de ville</span>&nbsp;- Niveau&nbsp;<span id="hotel_de_ville_level">0</span>
+						</span>
+					</div>
+					
+					<div id="tip_gestionVillageois" class="row center-align mb-3">
+						<div class="col s12">
+							Gérez vos villageois dans l'Hôtel de ville
+						</div>
+					</div>
+					
+					<div class="row center-align">
+						
+						<div class="col s6">
+							<div id="hotel_de_ville_upgrade_components">
+								<a id="hotel_de_ville_upgrade" class="waves-effect waves-light btn-small upgradeButton">
+									<i class="material-icons">home</i>&nbsp;Améliorer
+								</a>
+								<div>Coût: <span id="hotel_de_ville_upgradeCost">0</span></div>
+							</div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="card-action">
+					<div id="tip_limitVillageois" class="center-align">
+						Améliorez votre hôtel de ville pour faire venir plus de villageois.
+					</div>
+					<div class="row valign-wrapper">
+						<div class="col s5 m4 l3 left-align">
+							<div class="center-align">
+								<a id="citoyen_clic" class="btn-small deep-purple darken-1 waves-effect waves-light valign-wrapper upgradeButton disabled">
+									<i class="material-icons">people</i>&nbsp;+<span id='villageois_gain_clic'>1</span>
+								</a>
+								<div>Coût: <span id="citoyen_cost">0</span></div>
+							</div>
+						</div>
+						<div class="col s7 m8 l9">
+							<div id="auto" class="center-align">
+								<div class="switch">
+									<label>
+									<input id="auto_villageois" type="checkbox">
+									<span class="lever"></span>
+									Auto
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="citoyen_auto_upgradable" class="row valign-wrapper">
+						<div class="col s8 m8 l9">
+							<div class="right-align">
+								Débloquer l'automatisation de l'achat de villageois.
+							</div>
+						</div>
+						<div class="col s4 m4 l3">
+							<div class="center-align">
+								<a id="citoyen_auto_unlock" class="btn-small deep-purple darken-1 waves-effect waves-light valign-wrapper upgradeButton disabled">
+									Débloquer
+								</a>
+								<div>Coût: <span id="citoyen_auto_cost">0</span></div>
+							</div>
+						</div>
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div id="noAvailableCitizenPopup" class="container">
+			<div class="card horizontal">
+				<div class="card-image valign-wrapper">
+					<i class="material-icons">people</i>
+				</div>
+				<div class="card-content">
+					<p>Aucun villageois n'est disponible pour améliorer vos bâtiments !</p>
+					<p>Faîtes venir des villageois dans votre Hôtel de ville.</p>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="row">
+			<div class="col s12 m6 l3">
+			  <div id="nourriture_card" class="card light-green darken-1 hoverable">
+				<div class="card-content white-text">
+					<div class="card-title">
+						<div class="row">
+							<div class="col s5">
+								<span id="nourriture_name">Ferme</span>
+							</div>
+							<div class="col s7 right-align">
+								<span id="nourriture_gain">0</span> n/s
+							</div>
+						</div>
+					</div>
+					<blockquote id="nourriture_blockquote">Les fermiers cultivent et récoltent de la nourriture pour vous.</blockquote>
+					<div class="hide-on-med-and-down">Niveau: <span id="nourriture_level">0</span></div>
+				</div>
+				<div class="card-action">
+					<div class="row">
+						<div class="col s7 no-padding-left">
+							<div>Coût: <span id="nourriture_upgradeCost">0</span></div>
+							<div>Gain: <span id="nourriture_upgradedGain">0</span></div>
+						</div>
+						<div class="col s5 no-padding-right right-align">
+							<a id="nourriture_upgrade" class="waves-effect waves-light btn-small upgradeButton">Améliorer</a>
+						</div>
+					</div>
+				</div>
+			  </div>
+			</div>
+			<div class="col s12 m6 l3">
+			  <div id="bois_card" class="card brown lighten-2 hoverable">
+				<div class="card-content white-text">
+					<div class="card-title">
+						<div class="row">
+							<div class="col s5">
+								<span id="bois_name">Scierie</span>
+							</div>
+							<div class="col s7 right-align">
+								<span id="bois_gain">0</span> b/s
+							</div>
+						</div>
+					</div>
+				  <blockquote id="bois_blockquote">Les bûcherons taillent des arbres et coupent du bois dans la scierie.</blockquote>
+				  <div class="hide-on-med-and-down">Niveau: <span id="bois_level">0</span></div>
+				</div>
+				<div class="card-action">
+					<div class="row">
+						<div class="col s7 no-padding-left">
+							<div>Coût: <span id="bois_upgradeCost">0</span></div>
+							<div>Gain: <span id="bois_upgradedGain">0</span></div>
+						</div>
+						<div class="col s5 no-padding-right right-align">
+							<a id="bois_upgrade" class="waves-effect waves-light btn-small upgradeButton">Améliorer</a>
+						</div>
+					</div>
+				</div>
+			  </div>
+			</div>
+			<div class="col s12 m6 l3">
+			  <div id="or_card" class="card yellow darken-1 hoverable">
+				<div class="card-content white-text">
+					<div class="card-title">
+						<div class="row">
+							<div class="col s5">
+								<span id="or_name">Mine d'or</span>
+							</div>
+							<div class="col s7 right-align">
+								<span id="or_gain">0</span> o/s
+							</div>
+						</div>
+					</div>
+				  <blockquote id="or_blockquote">Les mineurs cherchent et forgent l'or trouvé dans la mine.</blockquote>
+				  <div class="hide-on-med-and-down">Niveau: <span id="or_level">0</span></div>
+				</div>
+				<div class="card-action">
+					<div class="row">
+						<div class="col s7 no-padding-left">
+							<div>Coût: <span id="or_upgradeCost">0</span></div>
+							<div>Gain: <span id="or_upgradedGain">0</span></div>
+						</div>
+						<div class="col s5 no-padding-right right-align">
+							<a id="or_upgrade" class="waves-effect waves-light btn-small upgradeButton">Améliorer</a>
+						</div>
+					</div>
+				</div>
+			  </div>
+			</div>
+			<div class="col s12 m6 l3">
+			  <div id="pierre_card" class="card grey hoverable">
+				<div class="card-content white-text">
+					<div class="card-title">
+						<div class="row">
+							<div class="col s5">
+								<span id="pierre_name">Carrière</span>
+							</div>
+							<div class="col s7 right-align">
+								<span id="pierre_gain">0</span> p/s
+							</div>
+						</div>
+					</div>
+				  <blockquote id="pierre_blockquote">Dans la carrière, les mineurs extraient et taillent la pierre.</blockquote>
+				  <div class="hide-on-med-and-down">Niveau: <span id="pierre_level">0</span></div>
+				</div>
+				<div class="card-action">
+					<div class="row">
+						<div class="col s7 no-padding-left">
+							<div>Coût: <span id="pierre_upgradeCost">0</span></div>
+							<div>Gain: <span id="pierre_upgradedGain">0</span></div>
+						</div>
+						<div class="col s5 no-padding-right right-align">
+							<a id="pierre_upgrade" class="waves-effect waves-light btn-small upgradeButton">Améliorer</a>
+						</div>
+					</div>
+				</div>
+			  </div>
+			</div>
+		</div>
+
+
+
+		
+	</main>
+	
+	<footer class="page-footer">
+		<div class="row">
+			<div class="col s6">
+			
+			</div>
+			<div class="col s6 right-align">
+				<span id="restart" class="upgradeButton">Recommencer</span>
+			</div>
+		</div>
+	</footer>
+
+</body>
+</html>
+
+
+
+
+<!-- Compiled and minified JavaScript -->
+<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
