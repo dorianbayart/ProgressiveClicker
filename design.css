@@ -31,6 +31,10 @@ main {
 }
 
 #card-recolte {
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	position: -ms-sticky;
+	position: -o-sticky;
 	position: sticky;
 	z-index: 1000;
 	top: 90px;
