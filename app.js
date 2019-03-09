@@ -658,7 +658,7 @@ $('#nourriture_clic_upgrade').click(() => {
 });
 $('#nourriture_upgrade').click(() => {
 	if(updatePreUpgrade(ferme)) {
-		ferme.upgradeGain = math_floor( ferme.gain + ferme.upgradeGain );
+		// ferme.upgradeGain = math_floor( ferme.gain + ferme.upgradeGain );
 		ferme.gain = math_floor( ferme.gain + ferme.upgradeGain );
 		ferme.level ++;
 		updatePostUpgrade(ferme);
