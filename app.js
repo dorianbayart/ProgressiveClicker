@@ -3,7 +3,7 @@ delay = Math.floor(1000/fps);
 precision = 100;
 constProgress = 108;
 
-levelRestarted = 1;
+levelRestarted = 0;
 
 villageois = 0;
 villageoisDispo = 0;
@@ -14,7 +14,7 @@ pierre = 0;
 
 hotelDeVille = {
 	name: 'Hôtel de ville',
-	level: 0,
+	level: 1,
 	villageoisMax: 5,
 	gain: 0,
 	requiredCitizen: 0,
@@ -588,7 +588,7 @@ function updatePreUpgradeCitizen(batiment) {
 function updatePostUpgrade(batiment) {
 	if(batiment == citoyen) {
 		for(let i = 0; i < batiment.cost.length; i++) {
-			let newPrice = Math.floor(batiment.cost[i].price * 105 / 100);
+			let newPrice = Math.floor(batiment.cost[i].price * 102 / 100);
 			if( batiment.cost[i].price === newPrice ) newPrice ++;
 			batiment.cost[i].price = newPrice;
 		}
