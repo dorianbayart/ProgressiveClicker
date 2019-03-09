@@ -126,7 +126,7 @@ ferme = {
 			price: 5
 		}
 	],
-	upgradeGain: 0.5
+	upgradeGain: 1
 }
 
 scierie = {
@@ -144,7 +144,7 @@ scierie = {
 			price: 10
 		}
 	],
-	upgradeGain: 0.5
+	upgradeGain: 1
 }
 
 mineOr = {
@@ -166,7 +166,7 @@ mineOr = {
 			price: 30
 		}
 	],
-	upgradeGain: 0.5
+	upgradeGain: 1
 }
 
 carriere = {
@@ -188,7 +188,7 @@ carriere = {
 			price: 10
 		}
 	],
-	upgradeGain: 0.5
+	upgradeGain: 1
 }
 	
 
@@ -588,7 +588,7 @@ function updatePreUpgradeCitizen(batiment) {
 function updatePostUpgrade(batiment) {
 	if(batiment == citoyen) {
 		for(let i = 0; i < batiment.cost.length; i++) {
-			let newPrice = Math.floor(batiment.cost[i].price * 108 / 100);
+			let newPrice = Math.floor(batiment.cost[i].price * 105 / 100);
 			if( batiment.cost[i].price === newPrice ) newPrice ++;
 			batiment.cost[i].price = newPrice;
 		}
@@ -658,6 +658,7 @@ $('#nourriture_clic_upgrade').click(() => {
 });
 $('#nourriture_upgrade').click(() => {
 	if(updatePreUpgrade(ferme)) {
+		ferme.upgradeGain = math_floor( ferme.gain + ferme.upgradeGain );
 		ferme.gain = math_floor( ferme.gain + ferme.upgradeGain );
 		ferme.level ++;
 		updatePostUpgrade(ferme);
@@ -725,15 +726,13 @@ $('#pierre_upgrade').click(() => {
 });
 
 $('#restart').click(() => {
-	console.log('Restart clicked !');
-	
 	initialize();
 	initializeValues(hotelDeVille.level);
 });
 
 function initializeValues(level) {
-	levelRestarted = levelRestarted * level;
-	constProgress = 108 + levelRestarted;
+	levelRestarted += level;
+	// constProgress = 108 + levelRestarted;
 	nourriture = 0;
 	bois = 0;
 	or = 0;
@@ -823,7 +822,7 @@ function initializeValues(level) {
 				price: 5
 			}
 		];
-	ferme.upgradeGain = Math.floor(0.5 * levelRestarted);
+	ferme.upgradeGain = Math.floor(levelRestarted/10);
 	
 	scierie.level = 0;
 	scierie.gain = 0;
@@ -837,7 +836,7 @@ function initializeValues(level) {
 				price: 10
 			}
 		];
-	scierie.upgradeGain = Math.floor(0.5 * levelRestarted);
+	scierie.upgradeGain = Math.floor(levelRestarted/10);
 	
 	mineOr.level = 0;
 	mineOr.gain = 0;
@@ -855,7 +854,7 @@ function initializeValues(level) {
 				price: 30
 			}
 		];
-	mineOr.upgradeGain = Math.floor(0.5 * levelRestarted);
+	mineOr.upgradeGain = Math.floor(levelRestarted/10);
 	
 	carriere.level = 0;
 	carriere.gain = 0;
@@ -873,7 +872,7 @@ function initializeValues(level) {
 				price: 10
 			}
 		];
-	carriere.upgradeGain = Math.floor(0.5 * levelRestarted);
+	carriere.upgradeGain = Math.floor(levelRestarted/10);
 
 }
 
