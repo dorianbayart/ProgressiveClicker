@@ -618,6 +618,10 @@ function costString(upgradeCost) {
 	return cost;
 }
 
+function formatNumber(n) {
+	
+}
+
 
 
 
