@@ -30,6 +30,10 @@ main {
 	padding-top: 0; /* overrides 20px */
 }
 
+#title a, #copyright a {
+	color: inherit;
+}
+
 #card-recolte {
 	position: -webkit-sticky;
 	position: -moz-sticky;
