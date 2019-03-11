@@ -24,14 +24,17 @@ main {
 
 .navbar-fixed {
 	height: 96px;
+	margin-bottom: calc(env(safe-area-inset-top));
 }
 
 .nav-extended, .page-footer {
 	background-color: #ee6e73f2;
+	padding-top: calc(env(safe-area-inset-top));
 }
 
 .page-footer {
 	padding-top: 0; /* overrides 20px */
+	padding-bottom: env(safe-area-inset-bottom);
 }
 
 #title a, #copyright a {
