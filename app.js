@@ -1,4 +1,4 @@
-fps = 20;
+fps = 10;
 delay = Math.floor(1000/fps);
 precision = 100;
 constProgress = 108;
@@ -333,13 +333,12 @@ function hideOrDisplay() {
 	}
 	
 	/* Popup message */
-	if( $('#nourriture_card').is(':visible') ) {
-		if( $('#noAvailableCitizenPopup').is(':hidden') && (villageoisDispo === 0) ) {
-			$('#noAvailableCitizenPopup').delay(500).show(400);
-		} else if( $('#noAvailableCitizenPopup').is(':visible') && (villageoisDispo > 0) ) {
-			$('#noAvailableCitizenPopup').hide(400);
-		}
+	if( !$('#auto_villageois').is(":checked") && $('#noAvailableCitizenPopup').is(':hidden') && (villageoisDispo === 0) && $('#hotel_de_ville_card').is(':visible') && villageois > 0 ) {
+		$('#noAvailableCitizenPopup').delay(500).show(400);
+	} else if( $('#noAvailableCitizenPopup').is(':visible') && (villageoisDispo > 0) ) {
+		$('#noAvailableCitizenPopup').hide(400);
 	}
+
 	if( $('#auto').is(':hidden') && $('#hotel_de_ville_card').is(':visible') ) {
 		if( $('#tip_limitVillageois').is(':hidden') && (villageois === hotelDeVille.villageoisMax) ) {
 			$('#tip_limitVillageois').delay(500).show(400);
@@ -731,12 +730,12 @@ $('#pierre_upgrade').click(() => {
 
 $('#restart').click(() => {
 	initialize();
+	$('#auto').show();
 	initializeValues(hotelDeVille.level);
 });
 
 function initializeValues(level) {
 	levelRestarted += level;
-	// constProgress = 108 + levelRestarted;
 	nourriture = 0;
 	bois = 0;
 	or = 0;
@@ -744,7 +743,7 @@ function initializeValues(level) {
 	villageois = 0;
 	villageoisDispo = 0;
 	hotelDeVille.villageoisMax = 5;
-	hotelDeVille.level = 0;
+	hotelDeVille.level = 1;
 	hotelDeVille.upgradeCost = [
 		{
 			type: 'nourriture',
@@ -826,7 +825,7 @@ function initializeValues(level) {
 				price: 5
 			}
 		];
-	ferme.upgradeGain = Math.floor(levelRestarted/10);
+	ferme.upgradeGain = Math.floor(levelRestarted/4);
 	
 	scierie.level = 0;
 	scierie.gain = 0;
@@ -840,7 +839,7 @@ function initializeValues(level) {
 				price: 10
 			}
 		];
-	scierie.upgradeGain = Math.floor(levelRestarted/10);
+	scierie.upgradeGain = Math.floor(levelRestarted/4);
 	
 	mineOr.level = 0;
 	mineOr.gain = 0;
@@ -858,7 +857,7 @@ function initializeValues(level) {
 				price: 30
 			}
 		];
-	mineOr.upgradeGain = Math.floor(levelRestarted/10);
+	mineOr.upgradeGain = Math.floor(levelRestarted/4);
 	
 	carriere.level = 0;
 	carriere.gain = 0;
@@ -876,7 +875,7 @@ function initializeValues(level) {
 				price: 10
 			}
 		];
-	carriere.upgradeGain = Math.floor(levelRestarted/10);
+	carriere.upgradeGain = Math.floor(levelRestarted/4);
 
 }
 
