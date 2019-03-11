@@ -243,6 +243,16 @@ function updateValues() {
 	$('#pierre').text( carriere.gain > 1 ? Math.floor(pierre) : math_floor_10(pierre) );
 }
 
+
+function calculateValues() {
+	villageois = math_floor(villageois + citoyen.automaticGain / fps);
+	villageoisDispo = math_floor(villageoisDispo + citoyen.automaticGain / fps);
+	nourriture = math_floor(nourriture + ferme.gain / fps);
+	bois = math_floor(bois + scierie.gain / fps);
+	or = math_floor(or + mineOr.gain / fps);
+	pierre = math_floor(pierre + carriere.gain / fps);
+}
+
 function updateContent() {
 	// Clic
 	$('#nourriture_gain_clic').text( nourriture_clic.gain );
@@ -507,15 +517,6 @@ function isClickable(batiment) { // For Citizen
 		isUpgradable = false;
 	}
 	return isUpgradable;
-}
-
-function calculateValues() {
-	villageois = math_floor(villageois + citoyen.automaticGain / fps);
-	villageoisDispo = math_floor(villageoisDispo + citoyen.automaticGain / fps);
-	nourriture = math_floor(nourriture + ferme.gain / fps);
-	bois = math_floor(bois + scierie.gain / fps);
-	or = math_floor(or + mineOr.gain / fps);
-	pierre = math_floor(pierre + carriere.gain / fps);
 }
 
 
