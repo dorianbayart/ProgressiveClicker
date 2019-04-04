@@ -80,6 +80,10 @@ nav > * > .row > * > .material-icons {
 	margin-right: 1rem;
 }
 
+.level {
+	font-size: x-small;
+}
+
 .card.horizontal .card-content {
 	// padding-left: 1rem;
 }
