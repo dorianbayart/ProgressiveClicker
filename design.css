@@ -81,7 +81,8 @@ nav > * > .row > * > .material-icons {
 }
 
 .level {
-	font-size: x-small;
+	font-size: small;
+	margin-left: 0.4em;
 }
 
 .card.horizontal .card-content {
