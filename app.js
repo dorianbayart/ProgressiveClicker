@@ -1,4 +1,4 @@
-fps = 10;
+fps = 20;
 delay = Math.floor(1000/fps);
 precision = 100;
 constProgress = 108;
