@@ -885,5 +885,5 @@ function math_floor(value) {
 	return Math.floor(value * precision) / precision;
 }
 function math_floor_10(value) {
-	return Math.floor(value * 10) / 10;
+	return Math.floor(value);
 }
