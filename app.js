@@ -826,7 +826,7 @@ function initializeValues(level) {
 				price: 5
 			}
 		];
-	ferme.upgradeGain = Math.floor(levelRestarted/4);
+	ferme.upgradeGain = Math.floor(levelRestarted/2);
 	
 	scierie.level = 0;
 	scierie.gain = 0;
@@ -840,7 +840,7 @@ function initializeValues(level) {
 				price: 10
 			}
 		];
-	scierie.upgradeGain = Math.floor(levelRestarted/4);
+	scierie.upgradeGain = Math.floor(levelRestarted/2);
 	
 	mineOr.level = 0;
 	mineOr.gain = 0;
@@ -858,7 +858,7 @@ function initializeValues(level) {
 				price: 30
 			}
 		];
-	mineOr.upgradeGain = Math.floor(levelRestarted/4);
+	mineOr.upgradeGain = Math.floor(levelRestarted/2);
 	
 	carriere.level = 0;
 	carriere.gain = 0;
@@ -876,7 +876,7 @@ function initializeValues(level) {
 				price: 10
 			}
 		];
-	carriere.upgradeGain = Math.floor(levelRestarted/4);
+	carriere.upgradeGain = Math.floor(levelRestarted/2);
 
 }
 
