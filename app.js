@@ -937,11 +937,12 @@ function math_floor_10(value) {
 }
 
 function formatNumber(n) {
+	if( n < 1000) return n;
 	let f;
 	let i = -1;
 	do {
 		i++;
 		f = Math.floor(n / Math.pow(1000, i) * 1000) / 1000;
 	} while(f > 1000)
-	return f + ' ' + BIG_NUMBERS[i] + (i > 0 && f >= 2 ? 's' : '');
+	return Number.parseFloat(f).toFixed(3) + ' ' + BIG_NUMBERS[i] + (i > 0 && f >= 2 ? 's' : '');
 }
