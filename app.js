@@ -3,6 +3,50 @@ delay = Math.floor(1000/fps);
 precision = 100;
 constProgress = 108;
 
+BIG_NUMBERS = [
+	'',
+	'mille',
+	'million',
+	'milliard', /* pow(10, 9) */
+	'billion',
+	'billiard',
+	'trillion',
+	'trilliard',
+	'quadrillion',
+	'quadrilliard',
+	'quintillion', /* pow(10, 30) */
+	'quintilliard',
+	'sextillion',
+	'sextilliard',
+	'septillion',
+	'septilliard',
+	'octillion',
+	'octilliard',
+	'nonillion',
+	'nonilliard',
+	'décillion', /* pow(10, 60) */
+	'décilliard',
+	'unodécillion',
+	'unodécilliard',
+	'duodécillion',
+	'duodécilliard',
+	'trédécillion',
+	'trédécilliard',
+	'quattuordécillion',
+	'quattuordécilliard',
+	'quindécillion', /* pow(10, 90) */
+	'quindécilliard',
+	'sexdécillion',
+	'sexdécilliard', /* pow(10, 99) */
+	'septendécillion',
+	'septendécilliard',
+	'octodécillion',
+	'octodécilliard',
+	'nonidécillion',
+	'nonidécilliard',
+	'vigintillion' /* pow(10, 120) */
+];
+
 levelRestarted = 0;
 
 villageois = 0;
@@ -237,10 +281,10 @@ function updateValues() {
 	$('#villageois').text( Math.floor(villageois) );
 	$('#villageoisDispo').text( Math.floor(villageoisDispo) );
 	$('#villageoisMax').text( hotelDeVille.villageoisMax );
-	$('#nourriture').text( ferme.gain > 1 ? Math.floor(nourriture) : math_floor_10(nourriture) );
-	$('#bois').text( scierie.gain > 1 ? Math.floor(bois) : math_floor_10(bois) );
-	$('#or').text( mineOr.gain > 1 ? Math.floor(or) : math_floor_10(or) );
-	$('#pierre').text( carriere.gain > 1 ? Math.floor(pierre) : math_floor_10(pierre) );
+	$('#nourriture').text( formatNumber( ferme.gain > 1 ? Math.floor(nourriture) : math_floor_10(nourriture) ) );
+	$('#bois').text( formatNumber( scierie.gain > 1 ? Math.floor(bois) : math_floor_10(bois) ) );
+	$('#or').text( formatNumber( mineOr.gain > 1 ? Math.floor(or) : math_floor_10(or) ) );
+	$('#pierre').text( formatNumber( carriere.gain > 1 ? Math.floor(pierre) : math_floor_10(pierre) ) );
 }
 
 
@@ -611,16 +655,20 @@ function updatePostUpgrade(batiment) {
 
 function costString(upgradeCost) {
 	let cost = '';
-	for(let i = 0; i < upgradeCost.length; i++) {
-		if(cost !== '') cost += ' / ';
-		cost += upgradeCost[i].price + ' ' + upgradeCost[i].type.charAt(0);
+	if(	upgradeCost.length === 4
+		&& upgradeCost[0].price === upgradeCost[1].price
+		&& upgradeCost[1].price === upgradeCost[2].price
+		&& upgradeCost[2].price === upgradeCost[3].price) {
+		cost = upgradeCost[0].price + ' de chaque';
+	} else {
+		for(let i = 0; i < upgradeCost.length; i++) {
+			if(cost !== '') cost += ' / ';
+			cost += upgradeCost[i].price + ' ' + upgradeCost[i].type.charAt(0);
+		}
 	}
 	return cost;
 }
 
-function formatNumber(n) {
-	
-}
 
 
 
@@ -886,4 +934,14 @@ function math_floor(value) {
 }
 function math_floor_10(value) {
 	return Math.floor(value);
+}
+
+function formatNumber(n) {
+	let f;
+	let i = -1;
+	do {
+		i++;
+		f = Math.floor(n / Math.pow(1000, i) * 1000) / 1000;
+	} while(f > 1000)
+	return f + ' ' + BIG_NUMBERS[i] + (i > 0 && f >= 2 ? 's' : '');
 }
